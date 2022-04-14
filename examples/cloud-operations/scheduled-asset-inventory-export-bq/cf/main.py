@@ -52,18 +52,19 @@ def _configure_logging(verbose=True):
 @click.option('--bq-table', required=True, help='Bigquery table name to use.')
 @click.option('--bq-table-overwrite', required=True, help='Overwrite existing BQ table or create new datetime() one.')
 @click.option('--target-node', required=True, help='Node in Google Cloud resource hierarchy.')
+@click.option('--resource-types', required=False, help='Filter resources by resource type, comma separated.')
 @click.option('--read-time', required=False, help=(
     'Day to take an asset snapshot in \'YYYYMMDD\' format, uses current day '
     ' as default. Export will run at midnight of the specified day.'))
 @click.option('--verbose', is_flag=True, help='Verbose output')
 def main_cli(project=None, bq_project=None, bq_dataset=None, bq_table=None, bq_table_overwrite=None, target_node=None,
-             read_time=None, verbose=False):
+             read_time=None, resource_types=None, verbose=False):
   '''Trigger Cloud Asset inventory export to Bigquery. Data will be stored in
   the dataset specified on a dated table with the name specified.
   '''
   try:
     _main(project, bq_project, bq_dataset, bq_table,
-          bq_table_overwrite, target_node, read_time, verbose)
+          bq_table_overwrite, target_node,resource_types, read_time, verbose)
   except RuntimeError:
     logging.exception('exception raised')
 
@@ -81,7 +82,7 @@ def main(event, context):
     logging.exception('exception in cloud function entry point')
 
 
-def _main(project=None, bq_project=None, bq_dataset=None, bq_table=None, bq_table_overwrite=None, target_node=None, read_time=None, verbose=False):
+def _main(project=None, bq_project=None,resource_types=None, bq_dataset=None, bq_table=None, bq_table_overwrite=None, target_node=None, read_time=None, verbose=False):
   'Module entry point used by cli and cloud function wrappers.'
 
   _configure_logging(verbose)
@@ -105,7 +106,8 @@ def _main(project=None, bq_project=None, bq_dataset=None, bq_table=None, bq_tabl
             'parent': target_node,
             'read_time': read_time,
             'content_type': content_type,
-            'output_config': output_config
+            'output_config': output_config,
+            'asset_types': [resource_types]
         }
     )
   except (GoogleAPIError, googleapiclient.errors.HttpError) as e:

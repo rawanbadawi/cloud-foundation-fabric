@@ -55,7 +55,7 @@ This is an optional part, created if `cai_gcs_export` is set to `true`. The high
 
 | name | description | type | required | default |
 |---|---|:---:|:---:|:---:|
-| [cai_config](variables.tf#L36) | Cloud Asset Inventory export config. | <code title="object&#40;&#123;&#10;  bq_dataset         &#61; string&#10;  bq_table           &#61; string&#10;  bq_table_overwrite &#61; bool&#10;  target_node        &#61; string&#10;&#125;&#41;">object&#40;&#123;&#8230;&#125;&#41;</code> | ✓ |  |
+| [cai_config](variables.tf#L36) | Cloud Asset Inventory export config. | <code title="object&#40;&#123;&#10;  bq_dataset         &#61; string&#10;  bq_table           &#61; string&#10;  bq_table_overwrite &#61; bool&#10;  target_node        &#61; string&#10;&#125;&#41;">object&#40;&#123;&#8230;&#125;&#41;</code> | ✓  |  |
 | [project_id](variables.tf#L101) | Project id that references existing project. | <code>string</code> | ✓ |  |
 | [billing_account](variables.tf#L17) | Billing account id used as default for new projects. | <code>string</code> |  | <code>null</code> |
 | [bundle_path](variables.tf#L23) | Path used to write the intermediate Cloud Function code bundle. | <code>string</code> |  | <code>&#34;.&#47;bundle.zip&#34;</code> |

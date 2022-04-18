@@ -49,7 +49,7 @@ It helps to create custom [scheduled query](https://cloud.google.com/bigquery/do
 This is an optional part, created if `cai_gcs_export` is set to `true`. The high level diagram extends to the following:
 
 <img src="diagram_optional.png" width="640px">
-<!-- BEGIN TFDOC -->
+<!-- BEGIN_TF_DOCS -->
 
 ## Variables
 
@@ -76,4 +76,4 @@ This is an optional part, created if `cai_gcs_export` is set to `true`. The high
 | [bq-dataset](outputs.tf#L17) | Bigquery instance details. |  |
 | [cloud-function](outputs.tf#L22) | Cloud Function instance details. |  |
 
-<!-- END TFDOC -->
+<!-- END TFDOCS -->

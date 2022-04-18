@@ -40,6 +40,7 @@ variable "cai_config" {
     bq_table           = string
     bq_table_overwrite = bool
     target_node        = string
+    asset_types = string
   })
 }
 

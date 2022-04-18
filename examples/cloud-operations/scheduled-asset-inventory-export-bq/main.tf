@@ -162,6 +162,7 @@ resource "google_cloud_scheduler_job" "job" {
       bq_table           = var.cai_config.bq_table
       bq_table_overwrite = var.cai_config.bq_table_overwrite
       target_node        = var.cai_config.target_node
+      asset_types = var.cai_config.asset_types
     }))
   }
 }

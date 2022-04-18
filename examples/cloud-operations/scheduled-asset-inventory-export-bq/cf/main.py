@@ -73,7 +73,7 @@ def main(event, context):
   'Cloud Function entry point.'
   try:
     data = json.loads(base64.b64decode(event['data']).decode('utf-8'))
-    print(data)
+    print("The data " + data)
     _main(**data)
   # uncomment once https://issuetracker.google.com/issues/155215191 is fixed
   # except RuntimeError:
@@ -100,7 +100,7 @@ def _main(project=None, bq_project=None, bq_dataset=None, bq_table=None, bq_tabl
       bq_project, bq_dataset)
   output_config.bigquery_destination.separate_tables_per_asset_type = True
   output_config.bigquery_destination.force = True
-  print(asset_types)
+  print("The assests " + asset_types)
   try:
     response = client.export_assets(
         request={
